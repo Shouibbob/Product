@@ -1,0 +1,16 @@
+<div class="card h-100">
+    <img [src]="ProductItem.image" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ProductItem.title}}</h5>
+      <p class="card-text">{{ProductItem.price | priceCurrancy}}</p>
+      <p class="card-text"> {{ProductItem.rating.rate | ratePercentage}}</p>
+      <p class="card-text" [ngStyle]="{'color': ProductItem.rating.count_in_stock > 0 ? 'green':'red' }">count: {{ProductItem.rating.count_in_stock}}</p>
+      <button class="btn btn-primary" (click)="AddProduct()">Add to Card</button>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted" *ngIf="ProductItem.rating.count_in_stock > 0 else elseBlock">available in stock</small>
+      <ng-template #elseBlock>
+          <small>not available in stock</small>
+      </ng-template>
+    </div>
+  </div>
